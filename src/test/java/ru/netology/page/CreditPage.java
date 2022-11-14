@@ -5,7 +5,6 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
-import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.text;
