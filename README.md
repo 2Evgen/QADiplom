@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/23seax4825881nnn/branch/master?svg=true)](https://ci.appveyor.com/project/2Evgen/qadiplom/branch/master)
+
 > **Дипломный проект профессии «Тестировщик»**
 
 ### 1. Склонировать проект
