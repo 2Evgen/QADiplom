@@ -3,11 +3,11 @@ services:
   node:
     image: node:8
     user: node
-    working_dir: /home/node/app
+    working_dir: /node/app
     environment:
       - NODE_ENV=production
     volumes:
-      - ./gate-simulator:/home/node/app
+      - ./gate-simulator:/node/app
     ports:
       - '9999:9999'
     command: npm start
