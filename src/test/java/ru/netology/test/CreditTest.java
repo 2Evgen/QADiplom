@@ -4,7 +4,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Feature;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
-import ru.netology.data.DataHelper;
+import ru.netology.data.UserInfo;
 import ru.netology.data.SQLHelper;
 import ru.netology.page.StartPage;
 
@@ -37,7 +37,7 @@ public class CreditTest {
     @Test
     void shouldPaymentWithApprovedCard() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(1), getYearCard(2), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -50,7 +50,7 @@ public class CreditTest {
     @Test
     void shouldPaymentWithApprovedCardExpires() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(0), getYearCard(0), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -63,7 +63,7 @@ public class CreditTest {
     @Test
     void shouldPaymentWithDeclinedCard() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getSecondCardNumber(), getMonthCard(0), getYearCard(1), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -76,7 +76,7 @@ public class CreditTest {
     @Test
     void shouldPaymentWithDeclinedCardExpires() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getSecondCardNumber(), getMonthCard(0), getYearCard(0), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -89,7 +89,7 @@ public class CreditTest {
     @Test
     void shouldPaymentWithInvalidCardNumber() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getInvalidCardNumber(), getMonthCard(2), getYearCard(1), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -100,7 +100,7 @@ public class CreditTest {
     @Test
     void shouldPaymentWithInvalidCardNumberShort() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getInvalidShortCardNumber(), getMonthCard(2), getYearCard(1), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -111,7 +111,7 @@ public class CreditTest {
     @Test
     void shouldPaymentExpiredCard() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(0), getYearCard(-1), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -122,7 +122,7 @@ public class CreditTest {
     @Test
     void shouldPaymentIncorrectCardExpirationDate() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(-1), getYearCard(0), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -133,7 +133,7 @@ public class CreditTest {
     @Test
     void shouldPaymentCardValidMoreThanFiveYears() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(1), getYearCard(6), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -144,7 +144,7 @@ public class CreditTest {
     @Test
     void shouldPaymentCardInvalidYearOneDigit() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(2), getInvalidYearCard(), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -155,7 +155,7 @@ public class CreditTest {
     @Test
     void shouldPaymentInvalidOwnerCard() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(1), getYearCard(3), getInvalidOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -166,7 +166,7 @@ public class CreditTest {
     @Test
     void shouldPaymentInvalidOwnerCardInCyrillic() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(1), getYearCard(3),
                 getInvalidOwnerCardCyrillic(), getCvc());
         var creditPage = startPage.paymentOnCredit();
@@ -178,7 +178,7 @@ public class CreditTest {
     @Test
     void shouldPaymentInvalidOwnerCardWithNumbers() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(1), getYearCard(3),
                 getInvalidOwnerCardWithNumbers(), getCvc());
         var creditPage = startPage.paymentOnCredit();
@@ -190,7 +190,7 @@ public class CreditTest {
     @Test
     void shouldPaymentInvalidOwnerCardOneLetterName() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(1), getYearCard(3),
                 getInvalidOwnerCardOneLetterName(), getCvc());
         var creditPage = startPage.paymentOnCredit();
@@ -203,7 +203,7 @@ public class CreditTest {
     @Test
     void shouldPaymentCardInvalidCvc() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(1), getYearCard(2), getOwnerCard(), getInvalidCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -214,7 +214,7 @@ public class CreditTest {
     @Test
     void shouldPaymentCardInvalidMonthOneDigit() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getInvalidMonthCardOneDigit(), getYearCard(2), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -225,7 +225,7 @@ public class CreditTest {
     @Test
     void shouldPaymentCardInvalidMonthInvalidPeriod() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getInvalidMonthCardInvalidPeriod(), getYearCard(2), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -236,7 +236,7 @@ public class CreditTest {
     @Test
     void shouldPaymentCardInvalidMonth() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getInvalidMonthCard(), getYearCard(2), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -247,7 +247,7 @@ public class CreditTest {
     @Test
     void shouldPaymentEmptyFieldNumberCard() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 null, getMonthCard(1), getYearCard(2), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -258,7 +258,7 @@ public class CreditTest {
     @Test
     void shouldPaymentEmptyFieldMonth() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), null, getYearCard(2), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -269,7 +269,7 @@ public class CreditTest {
     @Test
     void shouldPaymentEmptyFieldYears() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(2), null, getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -280,7 +280,7 @@ public class CreditTest {
     @Test
     void shouldPaymentEmptyFieldOwner() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(2), getYearCard(3), null, getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -291,7 +291,7 @@ public class CreditTest {
     @Test
     void shouldPaymentEmptyFieldCvc() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 getFirstCardNumber(), getMonthCard(2), getYearCard(3), getOwnerCard(), null);
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
@@ -302,7 +302,7 @@ public class CreditTest {
     @Test
     void shouldPaymentEmptyAllField() {
         var startPage = new StartPage();
-        DataHelper card = new DataHelper(
+        UserInfo card = new UserInfo(
                 null, null, null, null, null);
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);

@@ -2,7 +2,9 @@ package ru.netology.page;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
-import ru.netology.data.DataHelper;
+import ru.netology.data.UserInfo;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -23,7 +25,7 @@ public class PaymentPage {
         headingPayment.shouldBe(visible);
     }
 
-    public void getFillCardDetails(DataHelper cardInfo) {
+    public void getFillCardDetails(UserInfo cardInfo) {
         cardNumberField.setValue(cardInfo.getNumberCard());
         monthField.setValue(cardInfo.getMonth());
         yearField.setValue(cardInfo.getYear());
@@ -35,41 +37,41 @@ public class PaymentPage {
 
     public void successfulPaymentDebitCard() {
         $(".notification_status_ok")
-                .shouldHave(text("Успешно Операция одобрена Банком.")).shouldBe(visible);
+                .shouldHave(text("Успешно Операция одобрена Банком."), Duration.ofSeconds(15)).shouldBe(visible);
     }
 
     public void invalidPaymentDebitCard() {
         $(".notification_status_error")
-                .shouldHave(text("Ошибка! Банк отказал в проведении операции.")).shouldBe(visible);
+                .shouldHave(text("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(15)).shouldBe(visible);
     }
 
     public void checkInvalidFormat() {
-        $(".input__sub").shouldBe(visible).shouldHave(text("Неверный формат"));
+        $(".input__sub").shouldBe(visible).shouldHave(text("Неверный формат"),Duration.ofSeconds(15));
     }
 
     public void checkInvalidCardValidityPeriod() {
         $(".input__sub").shouldBe(visible)
-                .shouldHave(text("Неверно указан срок действия карты"));
+                .shouldHave(text("Неверно указан срок действия карты"),Duration.ofSeconds(15));
     }
 
     public void checkCardExpired () {
         $(".input__sub").shouldBe(visible)
-                .shouldHave(text("Истёк срок действия карты"));
+                .shouldHave(text("Истёк срок действия карты"),Duration.ofSeconds(15));
     }
 
     public void checkInvalidOwner() {
         $(".input__sub").shouldBe(visible)
-                .shouldHave(text("Введите имя и фамилию, указанные на карте"));
+                .shouldHave(text("Введите имя и фамилию, указанные на карте"),Duration.ofSeconds(15));
     }
 
     public void checkEmptyField() {
         $(".input__sub").shouldBe(visible)
-                .shouldHave(text("Поле обязательно для заполнения"));
+                .shouldHave(text("Поле обязательно для заполнения"),Duration.ofSeconds(15));
     }
 
     public void incorrectOwner() {
         $(".input__sub").shouldBe(visible)
-                .shouldHave(text("Значение поля может содержать только латинские буквы и дефис"));
+                .shouldHave(text("Значение поля может содержать только латинские буквы и дефис"),Duration.ofSeconds(15));
     }
 
     public void checkAllFieldsAreRequired() {
