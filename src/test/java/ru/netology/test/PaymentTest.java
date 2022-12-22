@@ -4,10 +4,9 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Feature;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
-import ru.netology.data.UserInfo;
 import ru.netology.data.SQLHelper;
+import ru.netology.data.UserInfo;
 import ru.netology.page.StartPage;
-
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
